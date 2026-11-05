@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #0f172a;
+      --bg-2: #1e1b4b;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent-1: #818cf8;
+      --accent-2: #f472b6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* eggplant cursor everywhere on the page */
+    html, body, a, * {
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text x='16' y='17' font-size='22' text-anchor='middle' dominant-baseline='middle'>%F0%9F%8D%86</text></svg>") 16 16, auto;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(129, 140, 248, 0.25), transparent 45%),
+        radial-gradient(circle at 80% 85%, rgba(244, 114, 182, 0.2), transparent 45%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      padding: 64px 20px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(129, 140, 248, 0.35);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 24px;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      isolation: isolate;
+    }
+
+    /* gradient fill that sweeps in on hover */
+    .link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+
+    .link .arrow {
+      position: absolute;
+      right: 22px;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .link:hover,
+    .link:focus-visible {
+      transform: translateY(-3px);
+      border-color: transparent;
+      box-shadow: 0 12px 28px rgba(129, 140, 248, 0.35);
+      outline: none;
+    }
+
+    .link:hover::before,
+    .link:focus-visible::before { transform: scaleX(1); }
+
+    .link:hover .arrow,
+    .link:focus-visible .arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .link:active { transform: translateY(-1px) scale(0.99); }
+
+    footer {
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .link, .link::before, .link .arrow { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="avatar" aria-hidden="true">J</div>
+    <h1>Your Name</h1>
+    <p class="tagline">All my links in one place</p>
+
+    <ul>
+      <li><a class="link" href="https://example.com" target="_blank" rel="noopener noreferrer">Link #1<span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="https://example.com" target="_blank" rel="noopener noreferrer">Link #2<span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="https://example.com" target="_blank" rel="noopener noreferrer">Link #3<span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="https://example.com" target="_blank" rel="noopener noreferrer">Link #4<span class="arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="link" href="https://example.com" target="_blank" rel="noopener noreferrer">Link #5<span class="arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+
+    <footer>© <span id="year"></span> Your Name</footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Sparkle trail: sparkles pop out of the cursor and fall off-screen under gravity
+    (function () {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const layer = document.createElement("div");
+      layer.style.cssText = "position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9999;";
+      document.body.appendChild(layer);
+
+      const GRAVITY = 900;      // px per second²
+      const MAX_PARTICLES = 120;
+      const SPAWN_EVERY = 35;   // ms between sparkles while moving
+      const particles = [];
+      let lastSpawn = 0;
+      let running = false;
+
+      function spawn(x, y) {
+        if (particles.length >= MAX_PARTICLES) {
+          particles.shift().el.remove();
+        }
+        const el = document.createElement("span");
+        el.textContent = "✨";
+        const size = 12 + Math.random() * 10;
+        el.style.cssText =
+          "position:absolute;left:0;top:0;will-change:transform,opacity;user-select:none;" +
+          "font-size:" + size + "px;line-height:1;" +
+          "filter:grayscale(1) brightness(1.8) drop-shadow(0 0 4px rgba(255,255,255,0.8));";
+        layer.appendChild(el);
+        particles.push({
+          el,
+          x: x + 6,               // nudge out from the cursor centre
+          y: y + 6,
+          vx: (Math.random() - 0.5) * 160,
+          vy: -60 - Math.random() * 120,   // small upward pop before falling
+          rot: Math.random() * 360,
+          vr: (Math.random() - 0.5) * 400,
+          life: 0
+        });
+        if (!running) { running = true; last = performance.now(); requestAnimationFrame(tick); }
+      }
+
+      let last = performance.now();
+      function tick(now) {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        const h = window.innerHeight;
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.vy += GRAVITY * dt;
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.rot += p.vr * dt;
+          p.life += dt;
+          const opacity = Math.max(0, 1 - p.life / 2.5);
+          p.el.style.transform = "translate(" + p.x + "px," + p.y + "px) rotate(" + p.rot + "deg)";
+          p.el.style.opacity = opacity;
+          if (p.y > h + 40 || opacity <= 0) {
+            p.el.remove();
+            particles.splice(i, 1);
+          }
+        }
+        if (particles.length) requestAnimationFrame(tick);
+        else running = false;
+      }
+
+      window.addEventListener("pointermove", function (e) {
+        if (e.pointerType === "touch") return;
+        const now = performance.now();
+        if (now - lastSpawn < SPAWN_EVERY) return;
+        lastSpawn = now;
+        spawn(e.clientX, e.clientY);
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
